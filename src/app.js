@@ -3,8 +3,10 @@
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
+const auth = require('./middlewares/auth.middleware');
+const  errorHandler  = require('./middlewares/error.middleware');
+const authRoutes = require('./routes/auth.routes');
 
-const { errorHandler } = require('./middlewares/error.middleware');
 
 const app = express();
 
@@ -17,13 +19,14 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
-app.get('/health', (req, res) => {
+app.get('/health' , auth ,(req, res) => {
   res.status(200).json({
     status: 'OK',
     uptime: process.uptime(),
     timestamp: new Date()
   });
 });
+app.use('/api/auth', authRoutes);
 
 app.use((req, res, next) => {
   res.status(404).json({
