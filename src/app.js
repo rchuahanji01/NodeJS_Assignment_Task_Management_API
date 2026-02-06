@@ -3,6 +3,9 @@
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
+const swaggerRoutes = require('./routes/swagger.routes');
+
+
 const auth = require('./middlewares/auth.middleware');
 const  errorHandler  = require('./middlewares/error.middleware');
 const authRoutes = require('./routes/auth.routes');
@@ -26,6 +29,10 @@ app.get('/health' , auth ,(req, res) => {
     timestamp: new Date()
   });
 });
+app.use('/api-docs', swaggerRoutes);
+
+
+
 app.use('/api/auth', authRoutes);
 app.use('/api/tasks', taskRoutes);
 app.use((req, res, next) => {
