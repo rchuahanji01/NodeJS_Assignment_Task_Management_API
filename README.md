@@ -70,7 +70,7 @@ src/
 
 ```bash
 git clone https://github.com/rchuahanji01/NodeJS_Assignment_Task_Management_API.git
-cd task-management-api
+cd credenceanalyticsNodejs
 ```
 
 ### 2. Install Dependencies
@@ -342,6 +342,31 @@ Password: 123456
 * Role changes require re-login to generate new JWT
 
 ---
+
+.
+
+🐳 Docker Setup
+
+This project is containerized using Docker and Docker Compose.
+
+Prerequisites
+
+Docker Desktop installed
+
+WSL2 enabled (for Windows users)
+
+Run Using Docker
+git clone https://github.com/rchuahanji01/NodeJS_Assignment_Task_Management_API.git && \
+cd credenceanalyticsNodejs && \
+docker compose up --build
+
+Access Application
+
+API: http://localhost:4000
+
+Health: http://localhost:4000/health
+
+Swagger: http://localhost:4000/api-docs
 
 ##  License
 
