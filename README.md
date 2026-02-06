@@ -2,7 +2,7 @@
 
 A secure and scalable Task Management REST API built with **Node.js, Express, MongoDB, JWT, and bcrypt**.
 
-This project demonstrates authentication, authorization, validation, and CRUD operations following production-style architecture.
+This project demonstrates authentication, authorization, validation, CRUD operations, and API documentation using Swagger following production-style architecture.
 
 ---
 
@@ -28,10 +28,11 @@ This project demonstrates authentication, authorization, validation, and CRUD op
 * Joi validation
 * Centralized error handling
 * Clean layered architecture (Routes → Controllers → Services → Models)
+* Interactive API documentation (Swagger)
 
 ---
 
-##  Tech Stack
+## Tech Stack
 
 * Node.js (v16+)
 * Express.js
@@ -39,6 +40,7 @@ This project demonstrates authentication, authorization, validation, and CRUD op
 * JWT (jsonwebtoken)
 * bcryptjs
 * Joi
+* Swagger (swagger-jsdoc, swagger-ui-express)
 
 ---
 
@@ -49,6 +51,8 @@ src/
  ├── app.js
  ├── server.js
  ├── config/
+ ├── docs/
+ │    └── swagger.js
  ├── models/
  ├── controllers/
  ├── services/
@@ -65,7 +69,7 @@ src/
 ### 1. Clone Repository
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/rchuahanji01/NodeJS_Assignment_Task_Management_API.git
 cd task-management-api
 ```
 
@@ -127,6 +131,34 @@ Response:
   "status": "OK"
 }
 ```
+
+---
+
+##  API Documentation (Swagger)
+
+Interactive API documentation is available using Swagger UI.
+
+Open in browser:
+
+```
+http://localhost:4000/api-docs
+```
+
+### Using Swagger with JWT
+
+1. Login using `/api/auth/login`
+2. Copy the JWT token
+3. Open `/api-docs` in browser
+4. Click **Authorize (🔒)**
+5. Enter:
+
+```
+Bearer <your-token>
+```
+
+6. Click **Authorize**
+
+Now you can test all protected APIs directly from Swagger.
 
 ---
 
@@ -256,7 +288,7 @@ Admins can access all users' tasks.
 ### Create Admin User
 
 1. Register normally using API
-2. Open MongoDB
+2. Open MongoDB (Atlas / Compass)
 3. Update user document:
 
 ```
@@ -307,9 +339,10 @@ Password: 123456
 * Deleted tasks are soft deleted using `isDeleted` flag
 * Validation is handled using Joi
 * Business logic is isolated in services layer
+* Role changes require re-login to generate new JWT
 
 ---
 
 ##  License
 
-This project is for technical assignment and learning purposes.
+This project is for technical assignment and learning purposes only.
