@@ -65,7 +65,7 @@ src/
 ### 1. Clone Repository
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/rchuahanji01/NodeJS_Assignment_Task_Management_API.git
 cd task-management-api
 ```
 
@@ -313,3 +313,4 @@ Password: 123456
 ##  License
 
 This project is for technical assignment and learning purposes.
+
