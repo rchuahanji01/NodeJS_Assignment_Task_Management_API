@@ -6,7 +6,7 @@ const cors = require('cors');
 const auth = require('./middlewares/auth.middleware');
 const  errorHandler  = require('./middlewares/error.middleware');
 const authRoutes = require('./routes/auth.routes');
-
+const taskRoutes = require('./routes/task.routes');
 
 const app = express();
 
@@ -27,7 +27,7 @@ app.get('/health' , auth ,(req, res) => {
   });
 });
 app.use('/api/auth', authRoutes);
-
+app.use('/api/tasks', taskRoutes);
 app.use((req, res, next) => {
   res.status(404).json({
     success: false,

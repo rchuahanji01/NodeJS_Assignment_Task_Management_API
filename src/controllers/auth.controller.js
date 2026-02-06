@@ -2,6 +2,10 @@ const authService = require('../services/auth.service');
 
 exports.register = async (req, res, next) => {
   try {
+     const existingUser = await User.findOne({
+        email: data.email
+    });
+
     const user = await authService.register(req.body);
 
     res.status(201).json({
