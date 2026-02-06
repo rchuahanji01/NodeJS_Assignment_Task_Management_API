@@ -1,24 +1,12 @@
-const jwt = require('jsonwebtoken');
-const env = require('../config/env');
-const ApiError = require('../utils/ApiError');
+module.exports = (err, req, res, next) => {
 
-module.exports = (req, res, next) => {
-  try {
-    const authHeader = req.headers.authorization;
+  console.error(err);
 
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      throw new ApiError(401, 'Authentication required');
-    }
+  const statusCode = err.statusCode || 500;
+  const message = err.message || 'Internal Server Error';
 
-    const token = authHeader.split(' ')[1];
-
-    const decoded = jwt.verify(token, env.jwtSecret);
-
-    req.user = decoded;
-
-    next();
-
-  } catch (err) {
-    next(new ApiError(401, 'Invalid or expired token'));
-  }
+  res.status(statusCode).json({
+    success: false,
+    message
+  });
 };

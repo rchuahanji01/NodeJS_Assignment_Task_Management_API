@@ -3,10 +3,12 @@ const env = require('../config/env');
 const ApiError = require('../utils/ApiError');
 
 module.exports = (req, res, next) => {
+
   const header = req.headers.authorization;
 
+  // No token
   if (!header || !header.startsWith('Bearer ')) {
-    throw new ApiError(401, 'Authentication required');
+    return next(new ApiError(401, 'Authentication required'));
   }
 
   const token = header.split(' ')[1];
@@ -14,10 +16,11 @@ module.exports = (req, res, next) => {
   try {
     const decoded = jwt.verify(token, env.jwtSecret);
 
-    req.user = decoded; 
+    req.user = decoded;
 
-    next();
+    return next();
+
   } catch (err) {
-    throw new ApiError(401, 'Invalid or expired token');
+    return next(new ApiError(401, 'Invalid or expired token'));
   }
 };

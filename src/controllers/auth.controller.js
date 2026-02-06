@@ -5,7 +5,6 @@ exports.register = async (req, res, next) => {
      
 
     const user = await authService.register(req.body);
-
     res.status(201).json({
       success: true,
       data: {
